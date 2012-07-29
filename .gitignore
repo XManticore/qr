@@ -1,6 +1,11 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
+
+# documentation folder
+doc
+
+# vim swap files
+*.swp
