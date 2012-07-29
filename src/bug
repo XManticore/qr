@@ -1,0 +1,41 @@
+#!/usr/bin/ruby
+#
+# Batch URL generator
+require 'optparse'
+
+# Default options
+options = {}
+options[:base_url] = <<END_URL
+https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/
+END_URL
+options[:lead_zeroes] = true
+options[:start] = 0
+options[:end]   = 9999
+
+# Get command line options
+parser = OptionParser.new do |opts|
+  prog_name = File.basename($PROGRAM_NAME)
+  opts.banner = <<END_BANNER
+
+Batch URL Generator
+```````````````````
+Usage: #{prog_name} [options]
+END_BANNER
+  opts.on("-u URL", "--base-url",
+          "The non-changing part of the URL") do |url|
+    options[:base_url] = url
+  end
+  opts.on("--[no-]lead-zeroes",
+          "Whether the ID should be padded with 0s") do |lead|
+    options[:lead_zeroes] = lead
+  end
+  opts.on("-s NUM", "--start-id",
+          "The lowest ID number to generate") do |num|
+    options[:start] = num
+  end
+  opts.on("-e NUM", "--end-id",
+          "The highest ID number to generate") do |num|
+    options[:end] = num
+  end
+end
+parser.parse!
