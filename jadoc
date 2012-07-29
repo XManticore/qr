@@ -1,0 +1,9 @@
+#!/bin/bash
+javadoc\
+    -d doc\
+    -quiet\
+    -sourcepath src\
+    -package\
+    -noqualifier all\
+    -use\
+    src/*.java
