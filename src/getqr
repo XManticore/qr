@@ -1,0 +1,35 @@
+#!/usr/bin/ruby
+#
+# Gets multiple QR codes using Google's API
+require 'optparse'
+
+# Default options
+options = {}
+# The filename of each qr code will be the bracketed part of the regex,
+# applied to the URL used to generate the qr code.
+# For the url https://foo.bar/baz/1234
+# with the regex ".*(\d+)"
+# the file will be named 1234.png
+options[:regex] = ".*(\d+)"
+options[:dir] = "qr-codes"
+
+# get command line options
+parser = OptionParser.new do |opts|
+	prog_name = File.basename($PROGRAM_NAME)
+	opts.banner = <<END_BANNER
+Batch QR Code Generator
+```````````````````````
+Usage: #{prog_name} [options] input-file
+       `input-file' should contain a newline-delimited list of URLs to be  
+       encoded as QR codes.
+END_BANNER
+	opts.on "-r REGEX", "--regex",
+					"Extracts the filename of the QR code from the URL" do |regex|
+		options[:regex] = regex
+	end
+	opts.on "-d DIR", "--directory",
+					"Where the QR codes will be saved" do |dir|
+		options[:dir] = dir
+	end
+end
+parser.parse!
