@@ -10,8 +10,12 @@ options = {}
 # For the url https://foo.bar/baz/1234
 # with the regex ".*(\d+)"
 # the file will be named 1234.png
-options[:regex] = ".*(\d+)"
+options[:regex] = /.*?(\d+)$/
 options[:dir] = "qr-codes"
+options[:size]= 512
+# These cannot be changed on the command line at present
+options[:level]="H"
+options[:margin]="4"
 
 # get command line options
 parser = OptionParser.new do |opts|
@@ -31,5 +35,39 @@ END_BANNER
 					"Where the QR codes will be saved" do |dir|
 		options[:dir] = dir
 	end
+	opts.on "-s SIZE", "--image-size",
+					"The size of the side of the QR code, in pixels" do |size|
+		options[:size] = size
+	end
 end
 parser.parse!
+
+# Set up base url
+base_url = "https://chart.googleapis.com/chart?cht=qr"
+base_url += unless options[:size].to_i < 50
+							"&chs=#{options[:size].to_i}x#{options[:size].to_i}"
+						else
+							"&chs=512x512"
+						end
+base_url += "&chld=#{options[:level]}|#{options[:margin]}"
+
+# Read file for urls
+if ARGV.size != 1
+	puts "Please provide an input file with a newline-delimited list of URLs"
+	puts "Run this program with the -h or --help options for help"
+	exit(1)
+end
+File.open ARGV[0], "r" do |file|
+	while line = file.gets
+		request_url = base_url + "&chl=#{line}"
+		request_url.chomp!
+		file_name = request_url.sub options[:regex], "\\1"
+		system <<END_REQUEST
+wget\
+	-O #{file_name}.png\
+	--directory-prefix "./#{options[:dir]}"\
+	"#{request_url}"
+mv #{file_name}.png #{options[:dir]}
+END_REQUEST
+	end
+end
