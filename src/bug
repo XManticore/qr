@@ -5,9 +5,7 @@ require 'optparse'
 
 # Default options
 options = {}
-options[:base_url] = <<END_URL
-https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/
-END_URL
+options[:base_url] = "https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/"
 options[:lead_zeroes] = true
 options[:start] = 0
 options[:end]   = 9999
@@ -31,11 +29,29 @@ END_BANNER
   end
   opts.on("-s NUM", "--start-id",
           "The lowest ID number to generate") do |num|
-    options[:start] = num
+    options[:start] = num.to_i
   end
   opts.on("-e NUM", "--end-id",
           "The highest ID number to generate") do |num|
-    options[:end] = num
+    options[:end] = num.to_i
   end
 end
 parser.parse!
+
+# generate urls
+#
+# find the length of the id. '-1' means that it will not be padded.
+id_length = -1
+if options[:lead_zeroes]
+	high_string = options[:end].to_s
+	length = high_string.length
+end
+for i in options[:start] .. options[:end] do
+	url = sprintf "%s", options[:base_url]
+	if options[:lead_zeroes]
+		url += sprintf "%0#{length}d", i
+	else
+		url += sprintf "%d", i
+	end
+	puts url
+end
