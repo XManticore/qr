@@ -57,6 +57,7 @@ if ARGV.size != 1
 	puts "Run this program with the -h or --help options for help"
 	exit(1)
 end
+counter = 0
 File.open ARGV[0], "r" do |file|
 	while line = file.gets
 		request_url = base_url + "&chl=#{line}"
@@ -64,10 +65,20 @@ File.open ARGV[0], "r" do |file|
 		file_name = request_url.sub options[:regex], "\\1"
 		system <<END_REQUEST
 wget\
+	--quiet\
 	-O #{file_name}.png\
 	--directory-prefix "./#{options[:dir]}"\
 	"#{request_url}"
 mv #{file_name}.png #{options[:dir]}
 END_REQUEST
+		# Output progress in orders of magnitude to prevent scroll blindness
+		counter_magnitude = counter.to_s.length
+		print "\b" * counter_magnitude 
+		divisor = 10 ** (counter_magnitude -1)
+		if counter % divisor == 0
+			print "#{counter}"
+		end
+		counter += 1
 	end
+	puts ""
 end
