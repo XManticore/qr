@@ -1,0 +1,7 @@
+#!/bin/bash
+javac\
+    -d laycomp\
+    -Xlint\
+    -Xlint:-serial\
+    -classpath laycomp\
+    layout/*.java\
