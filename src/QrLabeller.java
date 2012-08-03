@@ -7,12 +7,13 @@ class QrLabeller{
 	public static void main(String[] args){
 		GUI g = new GUI();
 	}
-	static class GUI extends JFrame{
+	static class GUI{
 		BufferedImage bi;
 		MyPanel p;
 		public GUI(){
 			super();
-			String root = "/homes/ec09414/qr/src/images/";
+			//String root = "/dev/shm/images/";
+			String root = "/homes/ec09414/qr/images/";
 			File imgFolder = new File(root);
 			File[] files = imgFolder.listFiles();
 			int counter = 0;
@@ -37,10 +38,9 @@ class QrLabeller{
 				}
 			}
 		}
-		static class MyPanel extends JPanel{
+		static class MyPanel{
 			BufferedImage img;
 			public MyPanel(final BufferedImage i, String label){
-				super();
 				img = new BufferedImage(512, 700, BufferedImage.TYPE_INT_RGB);
 				final Graphics2D g2d = img.createGraphics();
 				g2d.setComposite(AlphaComposite.Src);
@@ -51,16 +51,6 @@ class QrLabeller{
 				g2d.setFont(new Font(Font.SANS_SERIF, 0, 150));
 				g2d.drawString(label, 80, 600);
 				g2d.dispose();
-			}
-			@Override public Dimension getPreferredSize(){
-				if(img == null)
-					return new Dimension(200, 200);
-				else
-					return new Dimension(img.getWidth(null), img.getHeight(null)+200);
-			}
-			@Override public void paint(Graphics g){
-				super.paint(g);
-				g.drawImage(img, 0, 0, null);
 			}
 			public BufferedImage getNewImage(){ return img; }
 		}
