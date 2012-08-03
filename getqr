@@ -69,15 +69,14 @@ wget\
 	-O #{file_name}.png\
 	--directory-prefix "./#{options[:dir]}"\
 	"#{request_url}"
-mv #{file_name}.png #{options[:dir]}
+mv #{file_name}.png #{options[:dir]}/
 END_REQUEST
 		# Output progress in orders of magnitude to prevent scroll blindness
 		counter_magnitude = counter.to_s.length
 		print "\b" * counter_magnitude 
-		divisor = 10 ** (counter_magnitude -1)
-		if counter % divisor == 0
+		#if counter % divisor == 0
 			print "#{counter}"
-		end
+		#end
 		counter += 1
 	end
 	puts ""
