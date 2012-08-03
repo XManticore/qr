@@ -5,12 +5,12 @@ public abstract class PageLayout{
 	/** The height of the page, in 1/100th millimeters.
 	 */
 	public int pageHeight(){
-		return 2970;
+		return 29700;
 	}
 	/** The width of the page, in 1/100th millimeters.
 	 */
 	public int pageWidth(){
-		return 2100;
+		return 21000;
 	}
 	/** The dots per inch count of the paper.
 	 */
@@ -30,16 +30,16 @@ public abstract class PageLayout{
 	/** Returns the inches argument in millimeters.
 	 */
 	public final double toMM(double inch){
-		return 1 / toInch(inch);
+		return inch / 0.0393700787;
 	}
 	/** Returns the argument, given in 100ths of millimeters, as pixels.
 	 */
 	public final int asPixels(int hundredMillis){
 		//find size in inches
-		double inchLength = toInch(hundredMillis);
+		double inchLength = toInch(hundredMillis / 100);
 		// find number of pixels
 		double pixels = inchLength * dpi();
-		return (int)(Math.round(pixels/10));
+		return (int)(Math.round(pixels));
 	}
 	/** The left margin of the paper, in 1/100th millimeters. This doesn't 
 	 * include the hgap; the sticker starts immediately after the margin.

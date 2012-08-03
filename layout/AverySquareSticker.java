@@ -13,10 +13,10 @@ public class AverySquareSticker extends PageLayout{
 		return 600;
 	}
 	@Override public int stickerHeight(){
-		return 508;
+		return 5080;
 	}
 	@Override public int stickerWidth(){
-		return 508;
+		return 5080;
 	}
 	@Override public int hGap(){
 		return 510;

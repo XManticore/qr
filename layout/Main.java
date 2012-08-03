@@ -1,12 +1,13 @@
 package layout;
 import javax.imageio.*;
 import java.awt.*;
+import java.util.*;
 import java.awt.image.*;
 import java.io.*;
 class Main{
 	/* The path to the folder of images.
 	 */
-	private static String root = "/homes/ec09414/qr/images/";
+	private static String root = "/dev/shm/images/";
 	/* These coordinates represent the current position of the 'cursor'.
 	 * Every time an image is drawn, the cursor is moved into position,
 	 * ready for the next image.
@@ -36,11 +37,15 @@ class Main{
 		int pageWidth = layout.asPixels(layout.pageWidth());
 		BufferedImage bi = new BufferedImage(pageWidth, pageHeight,
 				BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.setPaint(new Color(255, 255, 255));
+		g2d.fill(new Rectangle(0, 0, 4000, 4000));
 		BufferedImage img = null;
 		initNewPage();
 		File imageFolder = new File(root);
-		for(File file : imageFolder.listFiles()){
-			print("Reading " + file.getName());
+		File[] images = imageFolder.listFiles();
+		Arrays.sort(images, new FileComparator());
+		for(File file : images){
 			try{
 				img = ImageIO.read(file);
 			}catch(Exception ex){
@@ -60,17 +65,14 @@ class Main{
 				save(bi, page);
 				bi = new BufferedImage(pageWidth, pageHeight,
 						BufferedImage.TYPE_INT_RGB);
-				Graphics2D g2d = bi.createGraphics();
+				g2d = bi.createGraphics();
 				g2d.setPaint(new Color(255, 255, 255));
 				g2d.fill(new Rectangle(0, 0, 4000, 4000));
 				initNewPage();
 			}
-			print("Placing image at row " + row + ", column " + column +
-					  " of page " + page);
-			print("x: " + x + ", y: " + y);
 			// Place image
-			Graphics2D g2d = bi.createGraphics();
-			g2d.drawImage(img, x, y, 512, 700, null);
+			g2d = bi.createGraphics();
+			g2d.drawImage(img, x, y, img.getWidth(), img.getHeight(), null);
 			x += layout.asPixels(layout.stickerWidth());
 			x += layout.asPixels(layout.hGap());
 			column++;
@@ -80,7 +82,6 @@ class Main{
 	/* Saves an image into a file called page[page].png
 	 */
 	private static void save(BufferedImage img, int page){
-		print("Saving page " + page);
 		try{
 			ImageIO.write(img, "png", new File(root+"page"+page+".png"));
 		}catch(Exception ex){
@@ -92,8 +93,8 @@ class Main{
 	 */
 	private static void initNewPage(){
 		row = 0; column = 0;
-		x = layout.asPixels(layout.lmargin() / 10);
-		y = layout.asPixels(layout.tmargin() / 10);
+		x = layout.asPixels(layout.lmargin());
+		y = layout.asPixels(layout.tmargin());
 		page++;
 	}
 	/* Prints a newline-delimited list of the array of objects passed as
@@ -102,5 +103,19 @@ class Main{
 	private static void print(Object ... o){
 		for(Object obj : o)
 			System.out.println(obj);
+	}
+	public static class FileComparator implements Comparator<File>{
+		@Override public int compare(File f1, File f2){
+			String name1 = f1.getName();
+			String name2 = f2.getName();
+			name1 = name1.replaceAll("(\\d+)\\.png", "$1");
+			name2 = name2.replaceAll("(\\d+)\\.png", "$1");
+			if(Integer.parseInt(name1) > Integer.parseInt(name2)){
+				return 1;
+			}else if(Integer.parseInt(name1) < Integer.parseInt(name2)){
+				return -1;
+			}else
+				throw new RuntimeException("Files have the same name!");
+		}
 	}
 }

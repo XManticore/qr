@@ -12,8 +12,8 @@ class QrLabeller{
 		MyPanel p;
 		public GUI(){
 			super();
-			//String root = "/dev/shm/images/";
-			String root = "/homes/ec09414/qr/images/";
+			String root = "/dev/shm/images/";
+			//String root = "/homes/ec09414/qr/images/";
 			File imgFolder = new File(root);
 			File[] files = imgFolder.listFiles();
 			int counter = 0;

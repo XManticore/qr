@@ -2,6 +2,6 @@
 javac\
     -d compiled\
     -Xlint\
-    -Xlint:serial\
+    -Xlint:-serial\
     -classpath compiled\
     src/*.java\
