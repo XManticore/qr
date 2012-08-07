@@ -40,7 +40,7 @@ where the base URL is `http://www.google.com/` (note the slash at the end).
 
 The start and end IDs can be specified with the `-s` and `-e` options. If 
 the start ID has fewer digits than the end ID, then some of the IDs will be
-padded out with zeroes. (See the example above: note the id `01`. If this
+padded out with zeroes. (See the example above: note the id `01`). If this
 behaviour is not desired, you can disable it with the `--no-lead-zeroes`
 flag.
 
@@ -55,8 +55,8 @@ to a URL on the EECS intranet.
 
 writes this output to `urls.txt`:
 
+    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/00
     https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/01
-    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/02
     ...
     https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/48
     https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/49
