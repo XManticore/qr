@@ -8,6 +8,7 @@ All the tools display a help message when invoked with the `-h` or
 `--help` option.
 
 **Contents:**
+
 [bug](https://github.com/XManticore/qr#bug "bug") - Batch URL Generator
 
 [getqr](https://github.com/XManticore/qr#getqr "qetqr") - Generates QR
@@ -16,8 +17,8 @@ codes
 [qrlabeller](https://github.com/XManticore/qr#qrlabeller "qrlabeller") -
 Adds labels onto QR codes
 
-[labelprint](https://github.com/XManticore/qr#bug "labelprint") - Formats
-QR codes into a layout suitable for printing
+[labelprint](https://github.com/XManticore/qr#labelprint "labelprint") - 
+Formats QR codes into a layout suitable for printing
 
 ________________________________________________________________________
 
