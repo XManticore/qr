@@ -4,7 +4,7 @@ public class AveryAddressLabel extends PageLayout{
 		return 455;
 	}
 	@Override public int rmargin(){
-		return 455;;
+		return 455;
 	}
 	@Override public int tmargin(){
 		return 1250;
@@ -13,10 +13,10 @@ public class AveryAddressLabel extends PageLayout{
 		return 600;
 	}
 	@Override public int stickerHeight(){
-		return 9910;
+		return 3390;
 	}
 	@Override public int stickerWidth(){
-		return 3390;
+		return 9910;
 	}
 	@Override public int hGap(){
 		return 340;
