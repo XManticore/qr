@@ -1,7 +1,0 @@
-#!/bin/bash
-javac\
-    -d compiled\
-    -Xlint\
-    -Xlint:-serial\
-    -classpath compiled\
-    src/*.java\
