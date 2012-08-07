@@ -51,15 +51,14 @@ class QrLabeller{
 		static class MyPanel{
 			BufferedImage img;
 			public MyPanel(final BufferedImage i, String label){
-				img = new BufferedImage(512, 700, BufferedImage.TYPE_INT_RGB);
+				img = new BufferedImage(1370, 512, BufferedImage.TYPE_INT_RGB);
 				final Graphics2D g2d = img.createGraphics();
-				g2d.setComposite(AlphaComposite.Src);
 				g2d.setPaint(new Color(255,255,255));
+				g2d.fill(new Rectangle(0, 0, 5000, 5000));
 				g2d.drawImage(i, 0, 0, 512, 512, null);
-				g2d.fill(new Rectangle(0, 512, 512, 200));
 				g2d.setPaint(new Color(0,0,0));
-				g2d.setFont(new Font(Font.SANS_SERIF, 0, 150));
-				g2d.drawString(label, 80, 600);
+				g2d.setFont(new Font(Font.SANS_SERIF, 0, 320));
+				g2d.drawString(label, 540, 370);
 				g2d.dispose();
 			}
 			public BufferedImage getNewImage(){ return img; }
