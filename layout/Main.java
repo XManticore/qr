@@ -42,7 +42,7 @@ class LabelPrint{
 			System.exit(0);
 		}else
 			root = args[0];
-		layout = new AverySquareSticker();
+		layout = new AveryAddressLabel();
 		int pageHeight = layout.asPixels(layout.pageHeight());
 		int pageWidth = layout.asPixels(layout.pageWidth());
 		BufferedImage bi = new BufferedImage(pageWidth, pageHeight,
