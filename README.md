@@ -99,6 +99,7 @@ not images, bad things may happen.
 Applies a label to every file in `/tmp/images`, overwriting the original
 image.
 
+`QrLabeller` can be compiled using the `compile-label` script.
 
 ## `LabelPrint` #########################################################
 *(Written in Java).* Should be invoked using the shell script
@@ -135,3 +136,6 @@ wrong shape, the output won't be pretty.
 
 Lays out every QR code in `/tmp/images` onto sheets named `Page1.jpg`,
 `Page2.jpg`... which are saved in `/tmp/images`.
+
+`LabelPrint`, and associated PageLayouts, can be compiled using the
+`compile-layout` script.
