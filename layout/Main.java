@@ -4,10 +4,10 @@ import java.awt.*;
 import java.util.*;
 import java.awt.image.*;
 import java.io.*;
-class Main{
+class LabelPrint{
 	/* The path to the folder of images.
 	 */
-	private static String root = "/dev/shm/images/";
+	private static String root = "/tmp/images/";
 	/* These coordinates represent the current position of the 'cursor'.
 	 * Every time an image is drawn, the cursor is moved into position,
 	 * ready for the next image.
@@ -32,6 +32,16 @@ class Main{
 	 * page as pageX.png, where X is a variable-width integer.
 	 */
 	public static void main(String[] args){
+		if(args.length != 1){
+			System.out.println("Please provide the directory where the QR codes "
+					              +"are located as an argument");
+			System.exit(1);
+		}else if(args[0].startsWith("-h") || args[0].startsWith("--h")){
+			System.out.println("LabelPrint");
+			System.out.println("Usage: ./labelprint <image-dir>");
+			System.exit(0);
+		}else
+			root = args[0];
 		layout = new AverySquareSticker();
 		int pageHeight = layout.asPixels(layout.pageHeight());
 		int pageWidth = layout.asPixels(layout.pageWidth());
