@@ -5,21 +5,31 @@ import java.awt.*;
 import java.awt.image.*;
 class QrLabeller{
 	public static void main(String[] args){
-		GUI g = new GUI();
+		if(args.length != 1){
+			System.out.println("Please provide the directory where the QR codes "
+					              +"are located as an argument");
+			System.exit(1);
+		}else if(args[0].startsWith("-h") || args[0].startsWith("--help")){
+			System.out.println("QrLabeller");
+			System.out.println("Usage: ./qrlabeller <image-dir>");
+			System.exit(0);
+		}else{
+			GUI g = new GUI(args[0]);
+		}
 	}
 	static class GUI{
 		BufferedImage bi;
 		MyPanel p;
-		public GUI(){
+		public GUI(String dir){
 			super();
-			String root = "/dev/shm/images/";
-			//String root = "/homes/ec09414/qr/images/";
+			String root = dir;
 			File imgFolder = new File(root);
 			File[] files = imgFolder.listFiles();
 			int counter = 0;
 			for(File image : files){
 				String newFileName; 
-				System.out.println("Processing file '" + image.getName() + "' " + counter++);
+				System.out.println("Processing file '" + image.getName() + "' "
+						+ counter++);
 				newFileName = image.getName().replaceAll("(\\d+)\\.png", "$1");
 				try{
 					bi = ImageIO.read(image);
