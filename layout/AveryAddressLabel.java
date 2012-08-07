@@ -1,33 +1,33 @@
 package layout;
-public class AverySquareSticker extends PageLayout{
+public class AveryAddressLabel extends PageLayout{
 	@Override public int lmargin(){
-		return 2370;
+		return 455;
 	}
 	@Override public int rmargin(){
-		return 2370;
+		return 455;;
 	}
 	@Override public int tmargin(){
-		return 2780;
+		return 1250;
 	}
 	@Override public int bmargin(){
 		return 600;
 	}
 	@Override public int stickerHeight(){
-		return 5080;
+		return 9910;
 	}
 	@Override public int stickerWidth(){
-		return 5080;
+		return 3390;
 	}
 	@Override public int hGap(){
-		return 510;
+		return 340;
 	}
 	@Override public int vGap(){
-		return 1270;
+		return 0;
 	}
 	@Override public int rows(){
-		return 4;
+		return 16;
 	}
 	@Override public int columns(){
-		return 3;
+		return 2;
 	}
 }
