@@ -12,7 +12,7 @@ options = {}
 # the file will be named 1234.png
 options[:regex] = /.*?(\d+)$/
 options[:dir] = Dir.pwd
-options[:size]= 512
+options[:size]= 400
 # These cannot be changed on the command line at present
 options[:level]="H"
 options[:margin]="4"
