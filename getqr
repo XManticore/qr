@@ -11,7 +11,7 @@ options = {}
 # with the regex ".*(\d+)"
 # the file will be named 1234.png
 options[:regex] = /.*?(\d+)$/
-options[:dir] = "qr-codes"
+options[:dir] = Dir.pwd
 options[:size]= 512
 # These cannot be changed on the command line at present
 options[:level]="H"
