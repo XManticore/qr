@@ -101,7 +101,12 @@ to be named `XXX.png`, where `XXX` is a (fixed or variable width) number.
 and then writes the label in this white space. The contents of the label
 will be `XXX` (the filename, minus the .png extension).
 
-The shape and size of the label is compiled in. `QrLabeller` will try to
+The shape and size of the label is compiled in. I couldn't figure
+out a quick 'n' easy way of ensuring that the position of the text
+would be okay even if the size was changed by the user at runtime.
+So, changes to the shape of the label should be coded by hand, and
+the text label should be moved appropriately.
+`QrLabeller` will try to
 label *every* file in the directory it is given; if some of the files are
 not images, bad things may happen.
 
