@@ -1,0 +1,7 @@
+#!/bin/bash
+javac\
+    -d exe\
+    -Xlint\
+    -Xlint:-serial\
+    -classpath exe\
+    label/*.java\
