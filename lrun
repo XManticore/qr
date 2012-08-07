@@ -1,2 +1,2 @@
 #!/bin/bash
-java -cp laycomp layout/Main
+java -cp exe layout/LabelPrint $1
