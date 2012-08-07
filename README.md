@@ -77,7 +77,7 @@ to `/tmp/images` as PNG files.
 
 
 ## `QrLabeller` #########################################################
-*(Written in Java.)* Should be invoked using the shell script
+*(Written in Java).* Should be invoked using the shell script
 `qrlabeller`.
 
 `QrLabeller` adds a numeric label to each image in a directory. It is
@@ -101,8 +101,8 @@ image.
 
 
 ## `LabelPrint` #########################################################
-*(Written in Java.)* Should be invoked using the shell script
-`qrlabeller`.
+*(Written in Java).* Should be invoked using the shell script
+`labelprint`.
 
 `LabelPrint` lays out many QR codes onto a page layout that is suitable for
 printing onto sticker sheets or labels. It takes a directory of QR code
