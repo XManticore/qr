@@ -11,7 +11,7 @@ All the tools display a help message when invoked with the `-h` or
 
 [bug](https://github.com/XManticore/qr#bug "bug") - Batch URL Generator
 
-[getqr](https://github.com/XManticore/qr#getqr "qetqr") - Generates QR
+[getqr](https://github.com/XManticore/qr#qetqr "qetqr") - Generates QR
 codes
 
 [qrlabeller](https://github.com/XManticore/qr#qrlabeller "qrlabeller") -
