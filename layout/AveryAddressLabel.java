@@ -7,13 +7,13 @@ public class AveryAddressLabel extends PageLayout{
 		return 455;
 	}
 	@Override public int tmargin(){
-		return 1250;
+		return 1650;
 	}
 	@Override public int bmargin(){
 		return 600;
 	}
 	@Override public int stickerHeight(){
-		return 3390;
+		return 3400;
 	}
 	@Override public int stickerWidth(){
 		return 9910;
