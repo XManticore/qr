@@ -19,7 +19,7 @@ require 'optparse'
 
 # Default options
 options = {}
-options[:base_url] = "https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/"
+options[:base_url] = "http://www.google.co.uk"
 options[:lead_zeroes] = true
 options[:start] = 0
 options[:end]   = 9

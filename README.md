@@ -45,21 +45,21 @@ behaviour is not desired, you can disable it with the `--no-lead-zeroes`
 flag.
 
 The base URL can be changed with the `-u` option. By default, it points
-to a URL on the EECS intranet.
+to Google's UK homepage.
 
 `bug` writes it's output to stdout; you can redirect it to a file.
 
 **Example:**
 
-    ./bug -s 0 -e 49 > urls.txt
+    ./bug -s 0 -e 49 -u http://foo.bar.baz/ > urls.txt
 
 writes this output to `urls.txt`:
 
-    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/00
-    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/01
+    http://foo.bar.baz/01
+    http://foo.bar.baz/02
     ...
-    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/48
-    https://intranet.eecs.qmul.ac.uk/staffonly/deskallocation/id/49
+    http://foo.bar.baz/03
+    http://foo.bar.baz/04
 
 
 ## `qetqr` ##############################################################
