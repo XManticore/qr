@@ -57,15 +57,15 @@ parser.parse!
 # find the length of the id. '-1' means that it will not be padded.
 id_length = -1
 if options[:lead_zeroes]
-	high_string = options[:end].to_s
-	length = high_string.length
+  high_string = options[:end].to_s
+  length = high_string.length
 end
 for i in options[:start] .. options[:end] do
-	url = sprintf "%s", options[:base_url]
-	if options[:lead_zeroes]
-		url += sprintf "%0#{length}d", i
-	else
-		url += sprintf "%d", i
-	end
-	puts url
+  url = sprintf "%s", options[:base_url]
+  if options[:lead_zeroes]
+    url += sprintf "%0#{length}d", i
+  else
+    url += sprintf "%d", i
+  end
+  puts url
 end
