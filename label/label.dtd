@@ -1,0 +1,9 @@
+<!ELEMENT label (height, width, qrcode, text)>
+<!ELEMENT height (#PCDATA)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT qrcode (size,x,y)>
+<!ELEMENT text (ptsize,x,y)>
+<!ELEMENT size (#PCDATA)>
+<!ELEMENT ptsize (#PCDATA)>
+<!ELEMENT x (#PCDATA)>
+<!ELEMENT y (#PCDATA)>
