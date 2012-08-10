@@ -1,0 +1,42 @@
+<!-- Describes the layout of stickers on a sticker sheet. -->
+<!ELEMENT pageLayout (dimension, margin, label, labelGap, rows, columns) >
+
+<!-- The size of the paper. -->
+<!ELEMENT dimension (height, width) >
+
+<!-- The margin along the sides of the page. -->
+<!ELEMENT margin (top, left, bottom, right) >
+
+<!-- The gap between each sticker. -->
+<!ELEMENT labelGap (horizontal, vertical)>
+
+<!-- The dimensions and internal layout of each sticker. -->
+<!ELEMENT label (height, width, qrcode, text)>
+
+<!-- The size and positioning of the QR code in the sticker. -->
+<!ELEMENT qrcode (size,x,y)>
+
+<!-- The size and positioning of the text in the sticker. -->
+<!ELEMENT text (ptsize,x,y)>
+
+<!-- How many rows of stickers there are on the sheet. -->
+<!ELEMENT rows (#PCDATA)>
+
+<!-- How many columns of stickers there are on the sheet. -->
+<!ELEMENT columns (#PCDATA)>
+
+<!-- These are all measured in cm  -->
+<!ELEMENT height (#PCDATA)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT size (#PCDATA)>
+<!ELEMENT x (#PCDATA)>
+<!ELEMENT y (#PCDATA)>
+<!ELEMENT top (#PCDATA) >
+<!ELEMENT left (#PCDATA) >
+<!ELEMENT bottom (#PCDATA) >
+<!ELEMENT right (#PCDATA) >
+<!ELEMENT horizontal (#PCDATA) >
+<!ELEMENT vertical (#PCDATA) >
+
+<!-- This is measured in pt  -->
+<!ELEMENT ptsize (#PCDATA)>

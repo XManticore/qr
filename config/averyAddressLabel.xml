@@ -1,0 +1,41 @@
+<?xml version = "1.0"?>
+<!DOCTYPE pageLayout SYSTEM "pageLayout">
+<pageLayout>
+	<dimension>
+		<!-- in cm -->
+		<height>29.7</height>
+		<width>21</width>
+	</dimension>
+	<margin>
+		<!-- in cm -->
+		<top>1.65</top>
+		<left>0.455</left>
+		<bottom>0.6</bottom>
+		<right>0.455</right>
+	</margin>
+	<label>
+		<!-- in cm -->
+		<height>3.4</height>
+		<width>9.91</width>
+		<qrcode>
+			<!-- in cm -->
+			<size>3.4</size>
+			<x>0</x>
+			<y>0</y>
+		</qrcode>
+		<text>
+			<!-- in pt -->
+			<ptsize>250</ptsize>
+			<!-- in cm -->
+			<x>3.9</x>
+			<y>0</y>
+		</text>
+	</label>
+	<labelGap>
+		<!-- in cm -->
+		<horizontal>0.34</horizontal>
+		<vertical>0</vertical>
+	</labelGap>
+	<rows>16</rows>
+	<columns>2</columns>
+</pageLayout>
