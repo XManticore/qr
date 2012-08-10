@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir exe
 javac\
     -d exe\
     -Xlint\
