@@ -1,8 +1,0 @@
-#!/bin/bash
-mkdir exe
-javac\
-    -d exe\
-    -Xlint\
-    -Xlint:-serial\
-    -classpath exe\
-    label/*.java\
