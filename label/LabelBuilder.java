@@ -7,66 +7,46 @@ package layout;
  * The getters and setters of this class all have the same name, but
  * the setters are invoked statically and take a parameter. 
  */
-public class StickerSheetBuilder{
-	/** The height of the page, in pixels
+public class LabelBuilder{
+	/** The height of the label, in pixels
 	 */
-	 public int pageHeight(){
-		return pageHeight;
+	 public int height(){
+		return height;
 	}
-	/** The width of the page, in pixels
+	/** The width of the label, in pixels
 	 */
-	 public int pageWidth(){
-		return pageWidth;
+	 public int width(){
+		return width;
 	}
-	/** The left margin of the page, in pixels
+	/** The size of the QR code in pixels
 	 */
-	 public int leftMargin(){
-		return leftMargin;
+	 public int qrSize(){
+		return qrSize;
 	}
-	/** The right margin of the page, in pixels
+	/** The horizontal position of the qr code ont he label
 	 */
-	 public int rightMargin(){
-		return rightMargin;
+	 public int qrX(){
+		return qrX;
 	}
-	/** The top margin of the page, in pixels
+	/** The vertical position of the qr code ont he label
 	 */
-	 public int topMargin(){
-		return topMargin;
+	 public int qrY(){
+		return qrY;
 	}
-	/** The bottom margin of the page, in pixels
+	/** THe size of the text in pt
 	 */
-	 public int bottomMargin(){
-		return bottomMargin;
+	 public int textSize(){
+		return textSize;
 	}
-	/** The height of the sticker, in pixels
+	/** The horizontal position of the text on the label
 	 */
-	public int stickerHeight(){
-		return stickerHeight;
+	public int textX(){
+		return textX;
 	}
-	/** The width of the sticker, in pixels
+	/** Thew vertical postion opf the texdt on the label
 	 */
-	public int stickerWidth(){
-		return stickerWidth;
-	}
-	/** The vertical gap between stickers, in pixels
-	 */
-	public int verticalGap(){
-		return verticalGap;
-	}
-	/** The horizontal gap between stickers, in pixels
-	 */
-	public int horizontalGap(){
-		return horizontalGap;
-	}
-	/** The number of rows in this page layout
-	 */
-	public int rows(){
-		return rows;
-	}
-	/** The number of columns in this page layout
-	 */
-	public int columns(){
-		return columns;
+	public int textY(){
+		return textY;
 	}
 	// SETTER METHODS AND HELPERS
 	private static int toPixel(double mm){
@@ -75,121 +55,85 @@ public class StickerSheetBuilder{
 		double inch = mm * 0.0393700787;
 		return (int)(inch * 300);
 	}
-	/** Sets the height of the page. Should be given in mm.
+	/** Sets the height of the Label. Should be given in mm.
 	 */
-	 public static void pageHeight(double height){
-		 pageHeight = toPixel(height);
+	 public static void height(double height){
+		 height = toPixel(height);
 	}
-	/** The width of the page, in pixels
+	/** Sets The width of the page.  Should be given in mm.
 	 */
-	 public static void pageWidth(double width){
-		 pageWidth = toPixel(width);
+	 public static void width(double width){
+		 width = toPixel(width);
 	}
-	/** The left margin of the page, in pixels
+	/** Sets the size of the QR code. Should be given in mm.
 	 */
-	 public static void leftMargin(double margin){
-		 leftMargin = toPixel(margin);
+	 public static void qrSize(double size){
+		 qrSize = toPixel(size);
 	}
-	/** The right margin of the page, in pixels
+	/** Sets the horizontal p[ostion of th qr code ont he label
 	 */
-	 public static void rightMargin(double margin){
-		 rightMargin = toPixel(margin);
+	 public static void qrX(double pos){
+		 qrX = toPixel(pos);
 	}
-	/** The top margin of the page, in pixels
+	/** Sets the vewrtical postion of the qr code on the label
 	 */
-	 public static void topMargin(double margin){
-		 topMargin = toPixel(margin);
+	 public static void qrY(double pos){
+		 qrY = toPixel(pos);
 	}
-	/** The bottom margin of the page, in pixels
+	/** Sets the sixe of the text in pt
 	 */
-	 public static void bottomMargin(double margin){
-		 bottomMargin = toPixel(margin);
+	 public static void textSize(double size){
+		 textSize = toPixel(size);
 	}
-	/** The height of the sticker, in pixels
+	/** Sets the horizontal position of the text on the label
 	 */
-	public static void stickerHeight(double height){
-		 stickerHeight = toPixel(height);
+	public static void textX(double textX){
+		 textX = toPixel(textX);
 	}
-	/** The width of the sticker, in pixels
+	/** Sets the vertical postion of the text on the label
 	 */
-	public static void stickerWidth(double width){
-		 stickerWidth = toPixel(width);
+	public static void textY(double textY){
+		 textY = toPixel(textY);
 	}
-	/** The vertical gap between stickers, in pixels
-	 */
-	public static void verticalGap(double gap){
-		 verticalGap = toPixel(gap);
-	}
-	/** The horizontal gap between stickers, in pixels
-	 */
-	public static void horizontalGap(double gap){
-		 horizontalGap = toPixel(gap);
-	}
-	/** The number of rows in this page layout
-	 */
-	public static void rows(int row){
-		rows = row;
-	}
-	/** The number of columns in this page layout
-	 */
-	public static void columns(int column){
-		columns = column;
-	}
-	/** Returns a new sticker sheet with the values that have previously
-	 * been set in this StickerSheetBuilder. If some of the values
+	/** Returns a new Label with the values that have previously
+	 * been set in this LabelBuilder. If some of the values
 	 * haven't been set yet, an exception is thrown.
 	 * @throws UnsupportedOperationException if not all the values
 	 * necessary to build a Sticker sheet have been set yet
 	 */
-	public static StickerSheet build(){
-		if(rows == -1)
+	public static Label build(){
+		if(height == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + rows + " has not been set!");
-		if(columns == -1)
+					"Value for " + height + " has not been set!");
+		if(width == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + columns + " has not been set!");
-		if(horizontalGap == -1)
+					"Value for " + width + " has not been set!");
+		if(qrSize == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + horizontalGap + " has not been set!");
-		if(verticalGap == -1)
+					"Value for " + qrSize + " has not been set!");
+		if(qrX == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + verticalGap + " has not been set!");
-		if(stickerWidth == -1)
+					"Value for " + qrX + " has not been set!");
+		if(qrY == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + stickerWidth + " has not been set!");
-		if(stickerHeight == -1)
+					"Value for " + qrY + " has not been set!");
+		if(textSize == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + stickerHeight + " has not been set!");
-		if(bottomMargin == -1)
+					"Value for " + textSize + " has not been set!");
+		if(textX == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + bottomMargin + " has not been set!");
-		if(topMargin == -1)
+					"Value for " + textX + " has not been set!");
+		if(textY == -1)
 			throw new UnsupportedOperationException(
-					"Value for " + topMargin + " has not been set!");
-		if(leftMargin == -1)
-			throw new UnsupportedOperationException(
-					"Value for " + leftMargin + " has not been set!");
-		if(rightMargin == -1)
-			throw new UnsupportedOperationException(
-					"Value for " + rightMargin + " has not been set!");
-		if(pageHeight == -1)
-			throw new UnsupportedOperationException(
-					"Value for " + pageHeight + " has not been set!");
-		if(pageWidth == -1)
-			throw new UnsupportedOperationException(
-					"Value for " + pageWidth + " has not been set!");
-		return new StickerSheet(new StickerSheetBuilder());
+					"Value for " + textY + " has not been set!");
+		throw new UnsupportedOperationException("not implemented");
 	}
-	private static int rows = -1;
-	private static int columns = -1;
-	private static int horizontalGap = -1;
-	private static int verticalGap = -1;
-	private static int stickerWidth = -1;
-	private static int stickerHeight = -1;
-	private static int bottomMargin = -1;
-	private static int topMargin = -1;
-	private static int leftMargin = -1;
-	private static int rightMargin = -1;
-	private static int pageHeight = -1;
-	private static int pageWidth = -1;
+	private static int height = -1;
+	private static int width = -1;
+	private static int qrSize = -1;
+	private static int qrX = -1;
+	private static int qrY = -1;
+	private static int textSize = -1;
+	private static int textX = -1;
+	private static int textY = -1;
 }

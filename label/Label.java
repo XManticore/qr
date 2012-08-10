@@ -1,12 +1,12 @@
 package layout;
-/** A representation of a sticker sheet. Objects of this class are
+/** A representation of a label. Objects of this class are
  * typically constructed by readong a page layout from an XML file. The
  * accessors of the method can then be used by other programs that lay
  * stickers out onto sticker sheets.
  * 
- * StickerSheets are created using the StickerSheetBuilder class.
- * StickerSheets themselves are immutable objects; values can only be set
- * to the StickerSheetBuilder.
+ * Labels are created using the LabelBuilder class.
+ * Labels themselves are immutable objects; values can only be set
+ * to the LabelBuilder class..
  *
  * The setter methods all return the object that they are being called
  * on, so that clients may chanin setters if necessary.
@@ -16,93 +16,65 @@ package layout;
  * are returned in pixels, again except for text size (returned in pt).
  * Obviously this doesn't apply to unitless numbers.
  */
-public class StickerSheet{
-	/** The height of the page, in pixels
+public class Label{
+	/** The height of the label, in pixels
 	 */
-	 public int pageHeight(){
-		return pageHeight;
+	 public int height(){
+		return height;
 	}
-	/** The width of the page, in pixels
+	/** The width of the label, in pixels
 	 */
-	 public int pageWidth(){
-		return pageWidth;
+	 public int width(){
+		return width;
 	}
-	/** The left margin of the page, in pixels
+	/** The size of the QR code, in pixels
 	 */
-	 public int leftMargin(){
-		return leftMargin;
+	 public int qrSize(){
+		return qrSize;
 	}
-	/** The right margin of the page, in pixels
+	/** The horizontal position of the QR code on the label
 	 */
-	 public int rightMargin(){
-		return rightMargin;
+	 public int qrX(){
+		return qrX;
 	}
-	/** The top margin of the page, in pixels
+	/** The vertical position of the QR code on the label
 	 */
-	 public int topMargin(){
-		return topMargin;
+	 public int qrY(){
+		return qrY;
 	}
-	/** The bottom margin of the page, in pixels
+	/** The size of the text, in pt
 	 */
-	 public int bottomMargin(){
-		return bottomMargin;
+	 public int textSize(){
+		return textSize;
 	}
-	/** The height of the sticker, in pixels
+	/** The horizontal position of the text on the label
 	 */
-	public int stickerHeight(){
-		return stickerHeight;
+	public int textX(){
+		return textX;
 	}
-	/** The width of the sticker, in pixels
+	/** The vertical position of the text on the label
 	 */
-	public int stickerWidth(){
-		return stickerWidth;
+	public int textY(){
+		return textY;
 	}
-	/** The vertical gap between stickers, in pixels
+	/** This only gets called from LabelBuilder
 	 */
-	public int verticalGap(){
-		return verticalGap;
+	protected Label(LabelBuilder b){
+		height = b.height();
+		width = b.width();
+		qrSize = b.qrSize();
+		qrX = b.qrX();
+		qrY = b.qrY();
+		textSize = b.textSize();
+		textX = b.textX();
+		textY = b.textY();
 	}
-	/** The horizontal gap between stickers, in pixels
-	 */
-	public int horizontalGap(){
-		return horizontalGap;
-	}
-	/** The number of rows in this page layout
-	 */
-	public int rows(){
-		return rows;
-	}
-	/** The number of columns in this page layout
-	 */
-	public int columns(){
-		return columns;
-	}
-	/** This only gets called from StickerSheetBuilder
-	 */
-	protected StickerSheet(StickerSheetBuilder b){
-		rows = b.rows();
-		columns = b.columns();
-		horizontalGap = b.horizontalGap();
-		verticalGap = b.verticalGap();
-		stickerWidth = b.stickerWidth();
-		stickerHeight = b.stickerHeight();
-		bottomMargin = b.bottomMargin();
-		topMargin = b.topMargin();
-		leftMargin = b.leftMargin();
-		rightMargin = b.rightMargin();
-		pageHeight = b.pageHeight();
-		pageWidth = b.pageWidth();
-	}
-	private int rows;
-	private int columns;
-	private int horizontalGap;
-	private int verticalGap;
-	private int stickerWidth;
-	private int stickerHeight;
-	private int bottomMargin;
-	private int topMargin;
-	private int leftMargin;
-	private int rightMargin;
-	private int pageHeight;
-	private int pageWidth;
+	private int height;
+	private int width;
+	private int qrSize;
+	private int qrX;
+	private int qrY;
+	private int textSize;
+	private int textX;
+	private int textY;
 }
