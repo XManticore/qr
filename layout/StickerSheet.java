@@ -1,4 +1,4 @@
-package label;
+package layout;
 /** A representation of a sticker sheet. Objects of this class are
  * typically constructed by readong a page layout from an XML file. The
  * accessors of the method can then be used by other programs that lay

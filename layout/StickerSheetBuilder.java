@@ -1,4 +1,4 @@
-package label;
+package layout;
 /** Used for building StickerSheets.  The static setter methods of this
  * class are used for setting the values of the StickerSheet. Once all
  * values have been set, the static build() method is called, which
