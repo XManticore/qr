@@ -1,8 +1,9 @@
+package label;
 /** Specifies fields that are useful in laying out a label. This enum
  * describes the fields of the XML file that are useful for laying out a
  * label. The XML file is described by pageLayout.dtd 
  */
-public enum LabelKeys{
+public enum LabelKey{
   /** The height of the label, in pixels */
   HEIGHT,
   /** The width of the label, in pixels */
