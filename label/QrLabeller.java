@@ -21,18 +21,25 @@ import java.awt.*;
 import java.awt.image.*;
 class QrLabeller{
   public static void main(String[] args){
-    if(args.length != 1){
-      System.out.println("Please provide the directory where the QR codes "
-                        +"are located as an argument");
+    if(args.length != 2){
+      usage();
       System.exit(1);
     }else if(args[0].startsWith("-h") || args[0].startsWith("--help")){
-      System.out.println("QrLabeller");
-      System.out.println("Usage: ./qrlabeller <image-dir>");
+      usage();
       System.exit(0);
     }else{
       GUI g = new GUI(args[0]);
     }
   }
+  private static void usage(){
+    System.out.println("QrLabeller");
+    System.out.println("Usage: ./qrlabeller <image-dir> <layout-file>");
+    System.out.println("<image-dir>   is where the QR codes are located.");
+    System.out.println("              It should only contain QR codes.");
+    System.out.println("<layout-file> is an XML file specifying the");
+    System.out.println("              layout of labels.");
+  }
+
   static class GUI{
     BufferedImage bi;
     MyPanel p;
