@@ -1,4 +1,5 @@
 package layout;
+import java.util.EnumMap;
 /** Used for building StickerSheets.  The static setter methods of this
  * class are used for setting the values of the StickerSheet. Once all
  * values have been set, the static build() method is called, which
@@ -8,188 +9,57 @@ package layout;
  * the setters are invoked statically and take a parameter. 
  */
 public class StickerSheetBuilder{
-  /** The height of the page, in pixels
-   */
-   public int pageHeight(){
-    return pageHeight;
-  }
-  /** The width of the page, in pixels
-   */
-   public int pageWidth(){
-    return pageWidth;
-  }
-  /** The left margin of the page, in pixels
-   */
-   public int leftMargin(){
-    return leftMargin;
-  }
-  /** The right margin of the page, in pixels
-   */
-   public int rightMargin(){
-    return rightMargin;
-  }
-  /** The top margin of the page, in pixels
-   */
-   public int topMargin(){
-    return topMargin;
-  }
-  /** The bottom margin of the page, in pixels
-   */
-   public int bottomMargin(){
-    return bottomMargin;
-  }
-  /** The height of the sticker, in pixels
-   */
-  public int stickerHeight(){
-    return stickerHeight;
-  }
-  /** The width of the sticker, in pixels
-   */
-  public int stickerWidth(){
-    return stickerWidth;
-  }
-  /** The vertical gap between stickers, in pixels
-   */
-  public int verticalGap(){
-    return verticalGap;
-  }
-  /** The horizontal gap between stickers, in pixels
-   */
-  public int horizontalGap(){
-    return horizontalGap;
-  }
-  /** The number of rows in this page layout
-   */
-  public int rows(){
-    return rows;
-  }
-  /** The number of columns in this page layout
-   */
-  public int columns(){
-    return columns;
-  }
-  // SETTER METHODS AND HELPERS
   private static int toPixel(double mm){
     // assuming 300dpi
     //convert mm to inch
     double inch = mm * 0.0393700787;
     return (int)(inch * 300);
   }
-  /** Sets the height of the page. Should be given in mm.
+  /** Sets the value of the field `key' to `value'. This method may on;ly
+   * be called once for each key.
+   * @throws UnsupportedOperationException if the client attempts to set
+   * the same key more than once.
+   * 
+   * Note that values should be set in millimeters for most fields. The
+   * exceptions are ROWS and COLUMNS, which obviously are just set in
+   * unitless numbers.
    */
-   public static void pageHeight(double height){
-     pageHeight = toPixel(height);
+  public static void set(LayoutKey key, double value){
+    if(key == LayoutKey.ROWS
+    || key == LayoutKey.COLUMNS)
+      instance.fields.put(key, new Integer((int)value));
+    else
+      instance.fields.put(key, toPixel(value));
   }
-  /** The width of the page, in pixels
+  /** Returns the value of the key. The value is returned in pixels,
+   * except for ROWS and COLUMNS which are returnes as unitless numbers.
    */
-   public static void pageWidth(double width){
-     pageWidth = toPixel(width);
+  protected int get(LayoutKey key){
+    return instance.fields.get(key).intValue();
   }
-  /** The left margin of the page, in pixels
-   */
-   public static void leftMargin(double margin){
-     leftMargin = toPixel(margin);
-  }
-  /** The right margin of the page, in pixels
-   */
-   public static void rightMargin(double margin){
-     rightMargin = toPixel(margin);
-  }
-  /** The top margin of the page, in pixels
-   */
-   public static void topMargin(double margin){
-     topMargin = toPixel(margin);
-  }
-  /** The bottom margin of the page, in pixels
-   */
-   public static void bottomMargin(double margin){
-     bottomMargin = toPixel(margin);
-  }
-  /** The height of the sticker, in pixels
-   */
-  public static void stickerHeight(double height){
-     stickerHeight = toPixel(height);
-  }
-  /** The width of the sticker, in pixels
-   */
-  public static void stickerWidth(double width){
-     stickerWidth = toPixel(width);
-  }
-  /** The vertical gap between stickers, in pixels
-   */
-  public static void verticalGap(double gap){
-     verticalGap = toPixel(gap);
-  }
-  /** The horizontal gap between stickers, in pixels
-   */
-  public static void horizontalGap(double gap){
-     horizontalGap = toPixel(gap);
-  }
-  /** The number of rows in this page layout
-   */
-  public static void rows(int row){
-    rows = row;
-  }
-  /** The number of columns in this page layout
-   */
-  public static void columns(int column){
-    columns = column;
-  }
-  /** Returns a new sticker sheet with the values that have previously
-   * been set in this StickerSheetBuilder. If some of the values
-   * haven't been set yet, an exception is thrown.
-   * @throws UnsupportedOperationException if not all the values
-   * necessary to build a Sticker sheet have been set yet
+  /** Builds and returns a new StickerSheet with the values that have
+   * been set in this StickerSheetBuilder. If any of the values have not
+   * been set, and exception is thrown.
+   * @throws IllegalStateException if one or more of the values required
+   * to build a new StickerSheet has not been set.
    */
   public static StickerSheet build(){
-    if(rows == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + rows + " has not been set!");
-    if(columns == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + columns + " has not been set!");
-    if(horizontalGap == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + horizontalGap + " has not been set!");
-    if(verticalGap == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + verticalGap + " has not been set!");
-    if(stickerWidth == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + stickerWidth + " has not been set!");
-    if(stickerHeight == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + stickerHeight + " has not been set!");
-    if(bottomMargin == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + bottomMargin + " has not been set!");
-    if(topMargin == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + topMargin + " has not been set!");
-    if(leftMargin == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + leftMargin + " has not been set!");
-    if(rightMargin == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + rightMargin + " has not been set!");
-    if(pageHeight == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + pageHeight + " has not been set!");
-    if(pageWidth == -1)
-      throw new UnsupportedOperationException(
-          "Value for " + pageWidth + " has not been set!");
-    return new StickerSheet(new StickerSheetBuilder());
+    for(LayoutKey key : instance.fields.keySet())
+      if(instance.fields.get(key).intValue() == SENTINEL)
+        throw new IllegalStateException(
+            "A value has not been set for " + key);
+    return new StickerSheet(instance);
   }
-  private static int rows = -1;
-  private static int columns = -1;
-  private static int horizontalGap = -1;
-  private static int verticalGap = -1;
-  private static int stickerWidth = -1;
-  private static int stickerHeight = -1;
-  private static int bottomMargin = -1;
-  private static int topMargin = -1;
-  private static int leftMargin = -1;
-  private static int rightMargin = -1;
-  private static int pageHeight = -1;
-  private static int pageWidth = -1;
+  private static void init(){
+    if(instance == null)
+      instance = new StickerSheetBuilder();
+  }
+  private StickerSheetBuilder(){
+    fields = new EnumMap<LayoutKey, Integer>(LayoutKey.class);
+    for(LayoutKey key : fields.keySet())
+      fields.put(key, new Integer(-1));
+  }
+  private final static int SENTINEL = -1;
+  private EnumMap<LayoutKey, Integer> fields;
+  private static StickerSheetBuilder instance;
 }

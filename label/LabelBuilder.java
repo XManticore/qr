@@ -30,6 +30,8 @@ public class LabelBuilder{
   /** Builds and returns a new Label with the values that have been set
    * in this LabelBuilder. If any of the values have not been set, an
    * exception is thrown.
+   * @throws IllegalStateException if one or more of the values required
+   * to build a new StickerSheet has not been set.
    */
   public static Label build(){
     for(LabelKey key : instance.fields.keySet())
