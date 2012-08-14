@@ -1,2 +1,2 @@
 #!/bin/bash
-java -cp exe layout/LabelPrint $1
+java -cp dist layout/LabelPrint $1
