@@ -9,3 +9,6 @@ doc
 
 # vim swap files
 *.swp
+
+# Compiled
+dist
