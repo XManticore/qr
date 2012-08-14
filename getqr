@@ -71,6 +71,10 @@ if ARGV.size != 1
   puts "Run this program with the -h or --help options for help"
   exit(1)
 end
+# create directory if it doesn't already exist
+unless File.exists? options[:dir]
+  Dir.mkdir options[:dir]
+end
 counter = 0
 File.open ARGV[0], "r" do |file|
   while line = file.gets
