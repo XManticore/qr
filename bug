@@ -52,6 +52,10 @@ END_BANNER
 end
 parser.parse!
 
+url = options[:base_url]
+if url[url.length - 1] != "/"
+  options[:base_url] += "/"
+end
 # generate urls
 #
 # find the length of the id. '-1' means that it will not be padded.
