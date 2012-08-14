@@ -4,11 +4,11 @@ package label;
  * label. The XML file is described by pageLayout.dtd 
  */
 public enum LabelKey{
-  /** The height of the label, in pixels */
-  HEIGHT,
-  /** The width of the label, in pixels */
-  WIDTH,
-  /** The size of the QR code, in pixels*/
+  /** The height of the label*/
+  LABEL_HEIGHT,
+  /** The width of the label*/
+  LABEL_WIDTH,
+  /** The size of the QR code*/
   QR_SIZE,
   /** The horizontal postion of th qr code on the label*/
   QR_X,

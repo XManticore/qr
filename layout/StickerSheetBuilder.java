@@ -25,6 +25,7 @@ public class StickerSheetBuilder{
    * unitless numbers.
    */
   public static void set(LayoutKey key, double value){
+    init();
     if(key == LayoutKey.ROWS
     || key == LayoutKey.COLUMNS)
       instance.fields.put(key, new Integer((int)value));
@@ -35,6 +36,7 @@ public class StickerSheetBuilder{
    * except for ROWS and COLUMNS which are returnes as unitless numbers.
    */
   protected int get(LayoutKey key){
+    init();
     return instance.fields.get(key).intValue();
   }
   /** Builds and returns a new StickerSheet with the values that have

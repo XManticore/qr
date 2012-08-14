@@ -28,8 +28,9 @@ public class StickerSheet{
    */
   protected StickerSheet(StickerSheetBuilder b){
     fields = new EnumMap<LayoutKey, Integer>(LayoutKey.class);
-    for(LayoutKey key : fields.keySet())
+    for(LayoutKey key : LayoutKey.values()){
       fields.put(key, new Integer(b.get(key)));
+    }
   }
   private final EnumMap<LayoutKey, Integer> fields;
 }

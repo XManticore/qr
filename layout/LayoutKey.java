@@ -17,9 +17,9 @@ public enum LayoutKey{
   /** The bottom margin of the page */
   BOTTOM_MARGIN,
   /** The height of the sticker */
-  STICKER_HEIGHT,
+  LABEL_HEIGHT,
   /** The width of the sticker */
-  STICKER_WIDTH,
+  LABEL_WIDTH,
   /** The vertical gap between stickers*/
   VERTICAL_GAP,
   /** The horixontal gap between stickers*/

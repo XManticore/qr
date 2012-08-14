@@ -23,7 +23,7 @@ public class Label{
    */
   protected Label(LabelBuilder b){
     fields = new EnumMap<LabelKey, Integer>(LabelKey.class);
-    for(LabelKey key : fields.keySet())
+    for(LabelKey key : LabelKey.values())
       fields.put(key, new Integer(LabelBuilder.get(key)));
   }
   private final EnumMap<LabelKey, Integer> fields;

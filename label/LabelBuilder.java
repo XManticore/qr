@@ -9,10 +9,17 @@ import java.util.EnumMap;
  * the setters are invoked statically and take a parameter. 
  */
 public class LabelBuilder{
+  private static int toPixel(double mm){
+    double inch = mm * 0.0393700787;
+    return (int)(inch * 300);
+  }
   /** Returns the value associated with the label field.
    */
   protected static int get(LabelKey key){
     init();
+    if(instance.fields.get(key) == null)
+      throw new IllegalStateException(
+        "The field for " + key + " has not been set");
     return instance.fields.get(key).intValue();
   }
   /** Sets the value of the field `key' to `value'. This method may only
@@ -20,12 +27,16 @@ public class LabelBuilder{
    * @throws UnsupportedOperationException if the client attempts to set
    * the same key more than once.
    */
-  public static void set(LabelKey key, int value){
+  public static void set(LabelKey key, double value){
     init();
-    if(instance.fields.get(key).intValue() != SENTINEL)
+    if(instance.fields.get(key) != null
+    && instance.fields.get(key).intValue() != SENTINEL)
       throw new UnsupportedOperationException(
           "Attempted to set the value for " + key + " more than once");
-    instance.fields.put(key, value);
+    if(key == LabelKey.TEXT_SIZE)
+      instance.fields.put(key, new Integer((int)value));
+    else
+      instance.fields.put(key, toPixel(value));
   }
   /** Builds and returns a new Label with the values that have been set
    * in this LabelBuilder. If any of the values have not been set, an
