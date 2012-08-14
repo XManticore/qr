@@ -2,22 +2,22 @@
 <!ELEMENT pageLayout (dimension, margin, label, labelGap, rows, columns) >
 
 <!-- The size of the paper. -->
-<!ELEMENT dimension (height, width) >
+<!ELEMENT dimension (page_height, page_width) >
 
 <!-- The margin along the sides of the page. -->
-<!ELEMENT margin (top, left, bottom, right) >
+<!ELEMENT margin (top_margin, left_margin, bottom_margin, right_margin) >
 
 <!-- The gap between each sticker. -->
-<!ELEMENT labelGap (horizontal, vertical)>
+<!ELEMENT labelGap (horizontal_gap, vertical_gap)>
 
 <!-- The dimensions and internal layout of each sticker. -->
-<!ELEMENT label (height, width, qrcode, text)>
+<!ELEMENT label (label_height, label_width, qrcode, text)>
 
 <!-- The size and positioning of the QR code in the sticker. -->
-<!ELEMENT qrcode (size,x,y)>
+<!ELEMENT qrcode (qr_size,qr_x,qr_y)>
 
 <!-- The size and positioning of the text in the sticker. -->
-<!ELEMENT text (ptsize,x,y)>
+<!ELEMENT text (text_size,text_x,text_y)>
 
 <!-- How many rows of stickers there are on the sheet. -->
 <!ELEMENT rows (#PCDATA)>
@@ -26,17 +26,21 @@
 <!ELEMENT columns (#PCDATA)>
 
 <!-- These are all measured in cm  -->
-<!ELEMENT height (#PCDATA)>
-<!ELEMENT width (#PCDATA)>
-<!ELEMENT size (#PCDATA)>
-<!ELEMENT x (#PCDATA)>
-<!ELEMENT y (#PCDATA)>
-<!ELEMENT top (#PCDATA) >
-<!ELEMENT left (#PCDATA) >
-<!ELEMENT bottom (#PCDATA) >
-<!ELEMENT right (#PCDATA) >
-<!ELEMENT horizontal (#PCDATA) >
-<!ELEMENT vertical (#PCDATA) >
+<!ELEMENT label_height (#PCDATA)>
+<!ELEMENT label_width (#PCDATA)>
+<!ELEMENT page_height (#PCDATA)>
+<!ELEMENT page_width (#PCDATA)>
+<!ELEMENT qr_size (#PCDATA)>
+<!ELEMENT qr_x (#PCDATA)>
+<!ELEMENT qr_y (#PCDATA)>
+<!ELEMENT text_x (#PCDATA)>
+<!ELEMENT text_y (#PCDATA)>
+<!ELEMENT top_margin (#PCDATA) >
+<!ELEMENT left_margin (#PCDATA) >
+<!ELEMENT bottom_margin (#PCDATA) >
+<!ELEMENT right_margin (#PCDATA) >
+<!ELEMENT horizontal_gap (#PCDATA) >
+<!ELEMENT vertical_gap (#PCDATA) >
 
 <!-- This is measured in pt  -->
-<!ELEMENT ptsize (#PCDATA)>
+<!ELEMENT text_size (#PCDATA)>
