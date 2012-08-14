@@ -11,10 +11,17 @@ javac\
     layout/*.java
 printf "\rCompiling label..."
 javac\
-	-d dist\
-	-Xlint\
-	-Xlint:-serial\
-	-classpath dist\
-	label/*.java
-cp config/* dist/config
+  -d dist\
+  -Xlint\
+  -Xlint:-serial\
+  -classpath dist\
+  label/*.java
+printf "\rCompiling config..."
+javac\
+  -d dist\
+  -Xlint\
+  -Xlint:-serial\
+  -classpath dist\
+  config/*.java
+cp config/*.xml config/*.dtd dist/config
 printf "\rDone.               \n"
