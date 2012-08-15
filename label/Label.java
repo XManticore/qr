@@ -41,5 +41,27 @@ public class Label{
     for(LabelKey key : LabelKey.values())
       fields.put(key, new Integer(LabelBuilder.get(key)));
   }
+  @Override public String toString(){
+     String s = "";
+     s += "Label ";
+     s += "Size (";
+     s += fields.get(LabelKey.LABEL_WIDTH);
+     s += "x";
+     s += fields.get(LabelKey.LABEL_HEIGHT);
+     s += ")px, QR code ";
+     s += fields.get(LabelKey.QR_SIZE);
+     s += "px high at {";
+     s += fields.get(LabelKey.QR_X);
+     s += ", ";
+     s += fields.get(LabelKey.QR_Y);
+     s += "), text label ";
+     s += fields.get(LabelKey.TEXT_SIZE);
+     s += "pt size at (";
+     s += fields.get(LabelKey.TEXT_X);
+     s += ", ";
+     s += fields.get(LabelKey.TEXT_Y);
+     s += ")";
+     return s;
+  }
   private final EnumMap<LabelKey, Integer> fields;
 }
