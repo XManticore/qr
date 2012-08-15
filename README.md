@@ -174,4 +174,4 @@ Lays out every QR code in `/tmp/images` onto sheets named `Page1.jpg`,
 `Page2.jpg`... which are saved in `/tmp/images`.
 
 `LabelPrint`, and associated PageLayouts, can be compiled using the
-`compile-layout` script.
+`compile` script.
