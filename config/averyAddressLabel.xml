@@ -36,6 +36,6 @@
     <horizontal_gap>3.4</horizontal_gap>
     <vertical_gap>0</vertical_gap>
   </labelGap>
-  <rows>16</rows>
+  <rows>8</rows>
   <columns>2</columns>
 </pageLayout>
