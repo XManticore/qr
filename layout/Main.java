@@ -103,6 +103,7 @@ class LabelPrint{
       column++;
     }
     save(bi, page);
+    System.out.println();
   }
   private static void readConfig(){
     LayoutReader read = new LayoutReader();
@@ -117,6 +118,7 @@ class LabelPrint{
       ex.printStackTrace();
       System.exit(1);
     }
+    System.out.print("\rSaved page " + page);
   }
   /* Changes the global coordinates to take account of margins.
    */
