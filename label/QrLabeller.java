@@ -19,9 +19,18 @@ import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import config.LayoutReader;
 class QrLabeller{
+  private static int HEIGHT;
+  private static int WIDTH;
+  private static int QR_SIZE;
+  private static int TEXT_SIZE;
+  private static int QR_X;
+  private static int QR_Y;
+  private static int TEXT_X;
+  private static int TEXT_Y;
   public static void main(String[] args){
-    if(args.length != 2){
+    if(args.length != 1){
       usage();
       System.exit(1);
     }else if(args[0].startsWith("-h") || args[0].startsWith("--help")){
@@ -39,13 +48,13 @@ class QrLabeller{
     System.out.println("<layout-file> is an XML file specifying the");
     System.out.println("              layout of labels.");
   }
-
   static class GUI{
     BufferedImage bi;
     MyPanel p;
     public GUI(String dir){
       super();
       String root = dir;
+      readConfig();
       File imgFolder = new File(root);
       File[] files = imgFolder.listFiles();
       int counter = 0;
@@ -71,17 +80,29 @@ class QrLabeller{
         }
       }
     }
+    private void readConfig(){
+      LayoutReader layout = new LayoutReader();
+      Label label = layout.label();
+      HEIGHT = label.get(LabelKey.LABEL_HEIGHT);
+      WIDTH = label.get(LabelKey.LABEL_WIDTH);
+      QR_SIZE = label.get(LabelKey.QR_SIZE);
+      TEXT_SIZE = label.get(LabelKey.TEXT_SIZE);
+      QR_X = label.get(LabelKey.QR_X);
+      QR_Y = label.get(LabelKey.QR_Y);
+      TEXT_X = label.get(LabelKey.TEXT_X);
+      TEXT_Y = label.get(LabelKey.TEXT_Y);
+    }
     static class MyPanel{
       BufferedImage img;
       public MyPanel(final BufferedImage i, String label){
-        img = new BufferedImage(1170, 400, BufferedImage.TYPE_INT_RGB);
+        img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         final Graphics2D g2d = img.createGraphics();
         g2d.setPaint(new Color(255,255,255));
-        g2d.fill(new Rectangle(0, 0, 5000, 5000));
-        g2d.drawImage(i, 0, 0, 400, 400, null);
+        g2d.fill(new Rectangle(0, 0, WIDTH, HEIGHT));
+        g2d.drawImage(i, QR_X, QR_Y, QR_SIZE, QR_SIZE, null);
         g2d.setPaint(new Color(0,0,0));
-        g2d.setFont(new Font(Font.SANS_SERIF, 0, 250));
-        g2d.drawString(label, 459, 300);
+        g2d.setFont(new Font(Font.SANS_SERIF, 0, TEXT_SIZE));
+        g2d.drawString(label, TEXT_X, TEXT_Y);
         g2d.dispose();
       }
       public BufferedImage getNewImage(){ return img; }
