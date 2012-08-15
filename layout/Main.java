@@ -70,6 +70,8 @@ class LabelPrint{
     File imageFolder = new File(root);
     File[] images = imageFolder.listFiles();
     Arrays.sort(images, new FileComparator());
+    int numberOfPages = images.length /
+        (layout.get(LayoutKey.ROWS) * layout.get(LayoutKey.COLUMNS));
     for(File file : images){
       try{
         img = ImageIO.read(file);
@@ -87,6 +89,7 @@ class LabelPrint{
       }
       // check if a new page needs to be started
       if(row == layout.get(LayoutKey.ROWS)){
+        System.out.printf("\rSaving page %d of %d", page, numberOfPages);
         save(bi, page);
         bi = new BufferedImage(pageWidth, pageHeight,
             BufferedImage.TYPE_INT_RGB);
@@ -118,7 +121,6 @@ class LabelPrint{
       ex.printStackTrace();
       System.exit(1);
     }
-    System.out.print("\rSaved page " + page);
   }
   /* Changes the global coordinates to take account of margins.
    */
