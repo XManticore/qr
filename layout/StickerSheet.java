@@ -47,5 +47,34 @@ public class StickerSheet{
       fields.put(key, new Integer(b.get(key)));
     }
   }
+  @Override public String toString(){
+    String s = "";
+    s += "Layout: page size (";
+    s += LayoutKey.PAGE_HEIGHT;
+    s += ", ";
+    s += LayoutKey.PAGE_WIDTH;
+    s += ")px; margins t( ";
+    s += LayoutKey.TOP_MARGIN;
+    s += ")px, l(";
+    s += LayoutKey.LEFT_MARGIN;
+    s += ")px, b(";
+    s += LayoutKey.BOTTOM_MARGIN;
+    s += ")px, r(";
+    s += LayoutKey.RIGHT_MARGIN;
+    s += ")px; label size (";
+    s += LayoutKey.LABEL_HEIGHT;
+    s += "x";
+    s += LayoutKey.LABEL_WIDTH;
+    s += ")px; gaps v(";
+    s += LayoutKey.VERTICAL_GAP;
+    s += ")px, h(";
+    s += LayoutKey.HORIZONTAL_GAP;
+    s += ")px; ";
+    s += LayoutKey.ROWS;
+    s += " rows, ";
+    s += LayoutKey.COLUMNS;
+    s += " columns.";
+    return s;
+  }
   private final EnumMap<LayoutKey, Integer> fields;
 }
