@@ -19,6 +19,7 @@ import java.awt.*;
 import java.util.*;
 import java.awt.image.*;
 import java.io.*;
+import config.LayoutReader;
 class LabelPrint{
   /* The path to the folder of images.
    */
@@ -37,11 +38,10 @@ class LabelPrint{
   /* Current page number
    */
   private static int page = 0;
-  /* The actual class of this object will determine what layout the
-   * sheets will be printed in. Initialise this variable to some subtype
-   * of PageLayout to choose the layout.
+  /* The fields avaliable on the sticker sheet will be read from an XML
+   * file
    */
-  private static PageLayout layout;
+  private static StickerSheet layout;
 
   /* Opens a folder of images. Places them onto pages, and saves each
    * page as pageX.png, where X is a variable-width integer.
@@ -57,14 +57,14 @@ class LabelPrint{
       System.exit(0);
     }else
       root = args[0];
-    layout = new AveryAddressLabel();
-    int pageHeight = layout.asPixels(layout.pageHeight());
-    int pageWidth = layout.asPixels(layout.pageWidth());
+    readConfig();
+    int pageHeight = layout.get(LayoutKey.PAGE_HEIGHT);
+    int pageWidth = layout.get(LayoutKey.PAGE_WIDTH);
     BufferedImage bi = new BufferedImage(pageWidth, pageHeight,
         BufferedImage.TYPE_INT_RGB);
     Graphics2D g2d = bi.createGraphics();
     g2d.setPaint(new Color(255, 255, 255));
-    g2d.fill(new Rectangle(0, 0, 4000, 4000));
+    g2d.fill(new Rectangle(0, 0, pageWidth, pageHeight));
     BufferedImage img = null;
     initNewPage();
     File imageFolder = new File(root);
@@ -78,31 +78,35 @@ class LabelPrint{
         System.exit(1);
       }
       // check if a new row needs to be started
-      if(column == layout.columns()){
+      if(column == layout.get(LayoutKey.COLUMNS)){
         column = 0;
         row++;
-        x = layout.asPixels(layout.lmargin());
-        y += layout.asPixels(layout.vGap());
-        y += layout.asPixels(layout.stickerHeight());
+        x = layout.get(LayoutKey.LEFT_MARGIN);
+        y += layout.get(LayoutKey.VERTICAL_GAP);
+        y += layout.get(LayoutKey.LABEL_HEIGHT);
       }
       // check if a new page needs to be started
-      if(row == layout.rows()){
+      if(row == layout.get(LayoutKey.ROWS)){
         save(bi, page);
         bi = new BufferedImage(pageWidth, pageHeight,
             BufferedImage.TYPE_INT_RGB);
         g2d = bi.createGraphics();
         g2d.setPaint(new Color(255, 255, 255));
-        g2d.fill(new Rectangle(0, 0, 4000, 4000));
+        g2d.fill(new Rectangle(0, 0, pageWidth, pageHeight));
         initNewPage();
       }
       // Place image
       g2d = bi.createGraphics();
       g2d.drawImage(img, x, y, img.getWidth(), img.getHeight(), null);
-      x += layout.asPixels(layout.stickerWidth());
-      x += layout.asPixels(layout.hGap());
+      x += layout.get(LayoutKey.LABEL_WIDTH);
+      x += layout.get(LayoutKey.HORIZONTAL_GAP);
       column++;
     }
     save(bi, page);
+  }
+  private static void readConfig(){
+    LayoutReader read = new LayoutReader();
+    layout = read.layout();
   }
   /* Saves an image into a file called page[page].png
    */
@@ -118,8 +122,8 @@ class LabelPrint{
    */
   private static void initNewPage(){
     row = 0; column = 0;
-    x = layout.asPixels(layout.lmargin());
-    y = layout.asPixels(layout.tmargin());
+    x = layout.get(LayoutKey.LEFT_MARGIN);
+    y = layout.get(LayoutKey.TOP_MARGIN);
     page++;
   }
   /* Prints a newline-delimited list of the array of objects passed as
