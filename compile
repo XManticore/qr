@@ -2,26 +2,12 @@
 rm -r dist >> /dev/null
 mkdir dist >> /dev/null
 mkdir dist/config >> /dev/null
-printf "Compiling layout..."
-javac\
-    -d dist\
-    -Xlint\
-    -Xlint:-serial\
-    -classpath dist\
-    layout/*.java
-printf "\rCompiling label..."
+printf "\rCompiling..."
 javac\
   -d dist\
   -Xlint\
   -Xlint:-serial\
   -classpath dist\
-  label/*.java
-printf "\rCompiling config..."
-javac\
-  -d dist\
-  -Xlint\
-  -Xlint:-serial\
-  -classpath dist\
-  config/*.java
+  config/*.java label/*.java layout/*.java
 cp config/*.xml config/*.dtd dist/config
 printf "\rDone.               \n"
