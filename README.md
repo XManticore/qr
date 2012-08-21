@@ -61,8 +61,8 @@ to Google's UK homepage.
 
 writes this output to `urls.txt`:
 
+    http://foo.bar.baz/00
     http://foo.bar.baz/01
-    http://foo.bar.baz/02
     ...
     http://foo.bar.baz/48
     http://foo.bar.baz/49
@@ -96,10 +96,10 @@ to `/tmp/images` as PNG files.
 
 ## Preparing QR codes for Printing ######################################
 Summary: you can place a QR code on a rectangular label, with a numeric
-ID printed beside the QR code, using the QrLabeller tool. You can then
+ID printed beside the QR code, using the `QrLabeller` tool. You can then
 arrange several of these labels onto a single image which is formatted to
 print nicely onto a sticker sheet, such as Avery Address Labels. This is
-done using the LabelPrint tool.
+done using the `LabelPrint` tool.
 
 These two tools use an XML configuration file, located in the `config`
 directory. The file is called `currentLayout.xml`, and it can be
