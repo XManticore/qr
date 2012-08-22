@@ -42,11 +42,9 @@ class QrLabeller{
   }
   private static void usage(){
     System.out.println("QrLabeller");
-    System.out.println("Usage: ./qrlabeller <image-dir> <layout-file>");
+    System.out.println("Usage: ./qrlabeller <image-dir>");
     System.out.println("<image-dir>   is where the QR codes are located.");
     System.out.println("              It should only contain QR codes.");
-    System.out.println("<layout-file> is an XML file specifying the");
-    System.out.println("              layout of labels.");
   }
   static class GUI{
     BufferedImage bi;
