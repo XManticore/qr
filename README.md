@@ -138,7 +138,7 @@ image.
 
 `QrLabeller` can be compiled using the `compile` script.
 
-## `LabelPrint` #########################################################
+### `LabelPrint` ########################################################
 *(Written in Java).* Should be invoked using the shell script
 `labelprint`.
 
